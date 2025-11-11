@@ -1,0 +1,121 @@
+
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 8px 0;
+}
+
+.footer-section ul li a {
+  color: var(--c-text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: var(--c-white);
+}
+
+.social-icons a {
+  font-size: 20px;
+  margin-right: 12px;
+  color: var(--c-text-muted);
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--c-primary);
+}
+
+.footer p {
+  color: #888;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+
+/*
+ * =========================================
+ * 6. DISEÑO RESPONSIVO (MÓVIL)
+ * =========================================
+ */
+@media (max-width: 768px) {
+  
+  /* El layout cambia: quitamos la sidebar y el padding del body */
+  body {
+    padding-left: 0;
+  }
+
+  .sidebar {
+    /* Ocultamos la sidebar. En un proyecto real, la reemplazarías con un menú hamburguesa */
+    display: none;
+  }
+
+  /* El contenido ahora ocupa el 100% del ancho */
+  .hero,
+  .gallery-section,
+  .footer {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem; /* Texto de Héroe más pequeño */
+  }
+
+  /* --- Arreglo del Carrusel 3D en Móvil --- */
+  .gallery-section {
+    /* Desactivamos la perspectiva 3D */
+    perspective: none;
+    display: block; /* Dejamos de centrar */
+    padding: 0 20px; /* Espacio lateral */
+    margin: 40px 0;
+  }
+
+  .container {
+    /* Convertimos el contenedor 3D en un simple contenedor estático */
+    position: static;
+    width: 100%;
+    height: auto;
+    transform-style: flat;
+    animation: none; /* Detenemos la animación */
+  }
+
+  .container span {
+    /* Apilamos las tarjetas verticalmente */
+    position: static;
+    display: block;
+    transform: none; /* Quitamos toda transformación 3D */
+    width: 280px;  /* Ancho fijo para las tarjetas */
+    height: 400px; /* Alto fijo */
+    margin: 0 auto 25px auto; /* Centradas y con espacio */
+  }
+  
+  .card {
+    width: 100%;
+    height: 100%;
+    /* El :hover (tap en móvil) sigue funcionando para voltear la tarjeta */
+  }
+
+  /* --- Arreglo del Footer en Móvil --- */
+  .footer-container {
+    flex-direction: column; /* Apila las secciones */
+    text-align: center; /* Centra el texto */
+  }
+  
+  .footer-logo {
+    align-self: center;
+  }
+  
+  .footer-section {
+    margin: 20px 0;
+  }
+  
+  .social-icons {
+    margin-top: 10px;
+  }
+}

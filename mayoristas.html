@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbería - Contacto</title>
+  <link rel="website icon" type="png" href="imagnes/logo.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="mayoristas.css">
+</head>
+<body>
+
+
+ <div class="sidebar">
+  <ul>
+    <li><a href="inicio.html" class="nav-link"><span class="item-icon"><i class="bx bxs-home"></i></span><span class="item-text">Inicio</span></a></li>
+    <li><a href="servicios.html" class="nav-link"><span class="item-icon"><i class="fas fa-cut"></i></span><span class="item-text">Servicios</span></a></li>
+    <li><a href="productos.html" class="nav-link"><span class="item-icon"><i class="fas fa-box"></i></span><span class="item-text">Productos</span></a></li>
+    <li><a href="mayoristas.html" class="nav-link"><span class="item-icon"><i class="fas fa-users"></i></span><span class="item-text">Mayoristas</span></a></li>
+    <li><a href="de-la-barberia-al-exito.html" class="nav-link"><span class="item-icon"><i class="fas fa-star"></i></span><span class="item-text">De la Barbería al Éxito</span></a></li>
+
+    <!-- 🔹 En lugar de un link a otra página, ahora es un botón que abre el chat -->
+    <li>
+      <a href="#" class="nav-link" id="open-chatbot">
+        <span class="item-icon"><i class="fas fa-comments"></i></span>
+        <span class="item-text">Chatbot</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+  <div class="main-content">
+    <div class="glass-container">
+      <center><h2>Contáctanos</h2></center>
+
+      <form action="#" method="post" class="contact-form">
+  
+        <div class="input-group">
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Nombre</label>
+        </div>
+
+    
+        <div class="input-group">
+          <input type="text" id="barberia" name="barberia" required>
+          <label for="barberia">Barbería</label>
+        </div>
+
+ 
+        <div class="input-group">
+          <input type="tel" id="telefono" name="telefono" required>
+          <label for="telefono">Teléfono</label>
+        </div>
+
+      
+        <div class="input-group">
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+          <label for="mensaje">Mensaje</label>
+        </div>
+
+      
+        <center>
+          <button type="submit" class="login-btn">Enviar</button>
+        </center>
+      </form>
+    </div>
+  </div>
+
+<footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="imagnes/logo.webp" alt="Logo Barbería">
+          <p>© 2025 Barbería</p>
+        </div>
+        <div class="footer-section">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="#">Cabello</a></li>
+            <li><a href="#">Barba y Bigote</a></li>
+            <li><a href="#">Después de Afeitar</a></li>
+            <li><a href="#">Accesorios</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Términos de Servicio</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contáctanos</h4>
+          <ul>
+            <li>WhatsApp: 55 2149 4990</li>
+            <li>Facebook: Macho Alfa</li>
+            <li>Email: ventas@machoalfa.com</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/MachoAlfaMexico/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/machoalfapomade/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@machoalfa1477/videos" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@machoalfapomade" target="_blank"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        </div>
+    </footer>
+    <!-- 💬 Chatbot flotante (alineado y centrado visualmente) -->
+<div id="chatbot-window" style="
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 360px;
+  height: 420px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.35);
+  overflow: hidden;
+  z-index: 999;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease-in-out;
+">
+
+  <!-- Barra superior -->
+  <div style="
+    background-color: #000;
+    color: white;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+  ">
+    <span>💈 Chatbot Barbería</span>
+    <button id="close-chatbot" style="
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    ">❌</button>
+  </div>
+
+  <!-- Contenido del chatbot -->
+  <iframe src="chatbot1.html" 
+    style="width:100%; height: calc(100% - 45px); border:none; border-radius: 0 0 10px 10px;">
+  </iframe>
+</div>
+
+<script>
+  const openChatbot = document.getElementById('open-chatbot');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const closeChatbot = document.getElementById('close-chatbot');
+
+  // Mostrar chatbot
+  openChatbot.addEventListener('click', (e) => {
+    e.preventDefault();
+    chatbotWindow.style.display = 'block';
+  });
+
+  // Cerrar chatbot
+  closeChatbot.addEventListener('click', () => {
+    chatbotWindow.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Barbería</title>
+  <link rel="website icon" type="png" href="imagnes/logo.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="producto.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #f2f2f2; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main { flex: 1; }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 60px;
+      background: #50504c;
+      transition: width 0.3s ease;
+      z-index: 10;
+    }
+    .sidebar:hover { width: 200px; }
+    .sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar ul li { display: flex; align-items: center; padding: 15px; color: white; cursor: pointer; transition: background 0.2s; }
+    .sidebar ul li:hover { background: rgba(255, 255, 255, 0.2); }
+    .nav-link { display: flex; align-items: center; color: white; text-decoration: none; width: 100%; }
+    .item-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; min-width: 40px; font-size: 20px; }
+    .item-text { opacity: 0; margin-left: 10px; transition: opacity 0.3s ease; white-space: nowrap; }
+    .sidebar:hover .item-text { opacity: 1; }
+
+    .top-seller {
+      margin-left: 80px;
+      padding: 40px 20px 20px 20px;
+      background: #fff;
+    }
+    .top-seller h2 { text-align:center; margin-bottom: 30px; }
+    .product-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+    .product-image img { width: 250px; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.1);}
+    .product-description { max-width: 600px; }
+    .product-description h3 { margin-bottom: 15px; color: #4e4c4c; }
+    .product-description h4 { margin-top: 15px; margin-bottom: 10px; }
+    .product-description p { margin-bottom: 10px; line-height: 1.5; }
+
+    .cards-section {
+      margin-left: 80px;
+      padding: 40px 20px;
+      background: #fff;
+    }
+    .cards-section h2 { text-align:center; margin-bottom: 30px; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .card {
+      width: 100%;
+      aspect-ratio: 4/5;
+      perspective: 1000px;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .card:hover .card-inner { transform: rotateY(180deg); }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card-front {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-front img { width: 100%; height: 100%; object-fit: cover; }
+    .card-back {
+      background: #fff;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .card-back h3 { margin-bottom: 10px; }
+    .card-back p { margin-bottom: 15px; font-weight: bold; }
+    .card-back button {
+      padding: 10px 20px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .card-back button:hover { background-color: #c0392b; }
+
+ 
+    .footer {
+      background-color: #1a1a1a;
+      color: #fff;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      margin-left: 80px;
+    }
+    .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; }
+    .footer-logo { flex: 1 1 200px; }
+    .footer-logo img { width: 120px; margin-bottom: 10px; }
+    .footer-section { flex: 1 1 180px; margin: 10px; }
+    .footer-section h4 { margin-bottom: 15px; font-size: 16px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+    .footer-section ul { list-style: none; padding: 0; }
+    .footer-section ul li { margin: 8px 0; }
+    .footer-section ul li a { color: #bbb; text-decoration: none; }
+    .footer-section ul li a:hover { color: #fff; }
+    .social-icons a { display: inline-block; margin-right: 10px; font-size: 20px; color: #bbb; }
+    .social-icons a:hover { color: #fff; }
+    .footer p { font-size: 14px; color: #888; }
+  </style>
+</head>
+<body>
+
+
+<div class="sidebar">
+  <ul>
+    <li><a href="inicio.html" class="nav-link"><span class="item-icon"><i class="bx bxs-home"></i></span><span class="item-text">Inicio</span></a></li>
+    <li><a href="servicios.html" class="nav-link"><span class="item-icon"><i class="fas fa-cut"></i></span><span class="item-text">Servicios</span></a></li>
+    <li><a href="productos.html" class="nav-link"><span class="item-icon"><i class="fas fa-box"></i></span><span class="item-text">Productos</span></a></li>
+    <li><a href="mayoristas.html" class="nav-link"><span class="item-icon"><i class="fas fa-users"></i></span><span class="item-text">Mayoristas</span></a></li>
+    <li><a href="de-la-barberia-al-exito.html" class="nav-link"><span class="item-icon"><i class="fas fa-star"></i></span><span class="item-text">De la Barbería al Éxito</span></a></li>
+
+    <!-- 🔹 En lugar de un link a otra página, ahora es un botón que abre el chat -->
+    <li>
+      <a href="#" class="nav-link" id="open-chatbot">
+        <span class="item-icon"><i class="fas fa-comments"></i></span>
+        <span class="item-text">Chatbot</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+  <main>
+  
+    <section class="top-seller">
+  
+      <div class="product-container">
+        <div class="product-image">
+          <img src="imagnes/lo_mas_vendido.webp" alt="Pomada Matte Pomade">
+        </div>
+        <div class="product-description">
+          <h3>Pomada para el Cabello Base Agua - MATTE POMADE</h3>
+          <p>
+            Especialmente para aquellos hombres que quieran tener un peinado <strong>sin brillo</strong> de manera natural, proporcionando una fijación <strong>fuerte o media</strong> dependiendo cómo lo apliques. Permite estilizar tu cabello durante <strong>todo el día</strong>. La pomada tiene un olor <strong>perfecto</strong> y un mayor amarre sin maltratar tu cabello.
+          </p>
+          <h4>Uso correcto:</h4>
+          <p>
+            Aplica una pequeña proporción con la yema de tus dedos. Puedes usar dos formas para estilizar: 
+            <br>1. Aplicar, moldear y peinar con secadora hasta lograr el acabado deseado. 
+            <br>2. Aplicar con la yema y peinar con la mano para un acabado natural. 
+          </p>
+          <p>
+            A diferencia de las ceras, estas pomadas son libres de petrolatos y alcohol, evitando la caída del cabello gracias a sus ingredientes naturales.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="cards-section">
+      
+      <div class="card-grid">
+      
+
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/pomada_figacion_media.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 1</h3><p>Precio: $250</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/pomada2.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 2</h3><p>Precio: $260</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/pomada3.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 3</h3><p>Precio: $270</p><button>Comprar</button></div></div></div>
+        
+
+
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/hidratante_para_barba.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 4</h3><p>Precio: $280</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/hidratante_para_cabello.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 5</h3><p>Precio: $290</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/crama_para_cabello.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 6</h3><p>Precio: $300</p><button>Comprar</button></div></div></div>
+     
+
+
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/12_pack_cera_pomade.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 7</h3><p>Precio: $310</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/barber_cape.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 8</h3><p>Precio: $320</p><button>Comprar</button></div></div></div>
+        <div class="card"><div class="card-inner"><div class="card-face card-front"><img src="imagnes/tonico_after.jpg" alt=""></div><div class="card-face card-back"><h3>Pomada 9</h3><p>Precio: $330</p><button>Comprar</button></div></div></div>
+      </div>
+    </section>
+  </main>
+ <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="imagnes/logo.webp" alt="Logo Barbería">
+          <p>© 2025 Barbería</p>
+        </div>
+        <div class="footer-section">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="#">Cabello</a></li>
+            <li><a href="#">Barba y Bigote</a></li>
+            <li><a href="#">Después de Afeitar</a></li>
+            <li><a href="#">Accesorios</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Términos de Servicio</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contáctanos</h4>
+          <ul>
+            <li>WhatsApp: 55 2149 4990</li>
+            <li>Facebook: Macho Alfa</li>
+            <li>Email: ventas@machoalfa.com</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Síguenos</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/MachoAlfaMexico/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/machoalfapomade/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@machoalfa1477/videos" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@machoalfapomade" target="_blank"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        </div>
+    </footer>
+<!-- 💬 Chatbot flotante (alineado y centrado visualmente) -->
+<div id="chatbot-window" style="
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 360px;
+  height: 420px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.35);
+  overflow: hidden;
+  z-index: 999;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease-in-out;
+">
+
+  <!-- Barra superior -->
+  <div style="
+    background-color: #000;
+    color: white;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+  ">
+    <span>💈 Chatbot Barbería</span>
+    <button id="close-chatbot" style="
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    ">❌</button>
+  </div>
+
+  <!-- Contenido del chatbot -->
+  <iframe src="chatbot1.html" 
+    style="width:100%; height: calc(100% - 45px); border:none; border-radius: 0 0 10px 10px;">
+  </iframe>
+</div>
+
+<script>
+  const openChatbot = document.getElementById('open-chatbot');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const closeChatbot = document.getElementById('close-chatbot');
+
+  // Mostrar chatbot
+  openChatbot.addEventListener('click', (e) => {
+    e.preventDefault();
+    chatbotWindow.style.display = 'block';
+  });
+
+  // Cerrar chatbot
+  closeChatbot.addEventListener('click', () => {
+    chatbotWindow.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>

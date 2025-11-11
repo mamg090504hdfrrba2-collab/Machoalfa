@@ -1,0 +1,96 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #2c2c2c;
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60px; 
+  background: #464545;
+  transition: width 0.3s ease;
+  overflow: hidden; 
+}
+
+
+.sidebar:hover {
+  width: 200px;
+}
+
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar ul li:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+.sidebar ul li i {
+  width: 30px;       
+  text-align: center;
+  font-size: 18px;
+  opacity: 1;        
+  flex-shrink: 0;    
+}
+
+
+.sidebar ul li span {
+  opacity: 0;              
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+.sidebar:hover ul li span {
+  opacity: 1;
+}
+
+
+.icon-img {
+  width: 40px;       
+  height: 40px;     
+  object-fit: cover; 
+  border-radius: 4px; 
+}
+
+
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+}
+
+
+.item-text {
+  opacity: 0;
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+
+.sidebar:hover .item-text {
+  opacity: 1;
+}
